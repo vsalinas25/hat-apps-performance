@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descripción de Puesto — Coordinación de Apps & Performance · AMG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── RESET & BASE ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --coral:   #EB4751;
+      --orange:  #F98C53;
+      --lavender:#A3A7C6;
+      --navy:    #26283F;
+      --cream:   #FAF9F7;
+      --white:   #FFFFFF;
+      --gray100: #F3F2EF;
+      --gray200: #E4E2DC;
+      --gray500: #7A7A8A;
+      --r: 10px;
+    }
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a1c2e 60%, #2e2040 100%);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,140,83,0.18) 0%, transparent 70%);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 40px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(235,71,81,0.12) 0%, transparent 70%);
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 52px 40px 44px;
+      position: relative;
+      z-index: 1;
+    }
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 36px;
+    }
+    .logo-amg {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      font-size: 2.1rem;
+      color: var(--coral);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .logo-dot {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      font-size: 2.1rem;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .logo-group {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      color: var(--lavender);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1;
+      align-self: center;
+    }
+    /* Header badge */
+    .header-badge {
+      display: inline-block;
+      background: rgba(249,140,83,0.18);
+      border: 1px solid rgba(249,140,83,0.4);
+      color: var(--orange);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 18px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      max-width: 580px;
+    }
+    .header-subtitle {
+      font-size: 0.95rem;
+      color: var(--lavender);
+      font-weight: 400;
+      line-height: 1.65;
+      max-width: 560px;
+    }
+    /* Meta chips */
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+    .meta-chip {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 7px 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+    .meta-chip .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── MISSION BAND ──────────────────────────────────────────── */
+    .mission-band {
+      background: var(--coral);
+      padding: 0;
+    }
+    .mission-band-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .mission-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .mission-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 6px;
+    }
+    .mission-text {
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.65;
+      font-weight: 400;
+    }
+    .mission-text strong {
+      font-weight: 700;
+    }
+
+    /* ── MAIN CONTENT ──────────────────────────────────────────── */
+    .main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 52px 40px 0;
+    }
+
+    /* ── SECTION HEADER ────────────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .section-accent {
+      width: 4px;
+      height: 36px;
+      background: linear-gradient(180deg, var(--coral), var(--orange));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.45rem;
+      color: var(--navy);
+    }
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--lavender);
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIBILITY CARDS ──────────────────────────────────── */
+    .responsibilities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 52px;
+    }
+    .resp-card {
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1.5px solid var(--gray200);
+      padding: 24px 24px 22px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .resp-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--coral), var(--orange));
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .resp-card:hover {
+      box-shadow: 0 8px 32px rgba(38,40,63,0.10);
+      border-color: var(--lavender);
+    }
+    .resp-card:hover::before { opacity: 1; }
+
+    .resp-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #f7f6fb 0%, #fff 100%);
+      border-color: var(--lavender);
+    }
+    .resp-card.featured::before { opacity: 1; }
+
+    .resp-icon-wrap {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+    .ic-coral  { background: rgba(235,71,81,0.10); }
+    .ic-orange { background: rgba(249,140,83,0.12); }
+    .ic-lav    { background: rgba(163,167,198,0.15); }
+    .ic-navy   { background: rgba(38,40,63,0.08); }
+
+    .resp-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+      margin-bottom: 8px;
+    }
+    .tag-coral  { background: rgba(235,71,81,0.10); color: var(--coral); }
+    .tag-orange { background: rgba(249,140,83,0.15); color: #c9601a; }
+    .tag-lav    { background: rgba(163,167,198,0.20); color: #6366a0; }
+    .tag-navy   { background: rgba(38,40,63,0.08);  color: var(--navy); }
+
+    .resp-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 9px;
+      line-height: 1.3;
+    }
+    .resp-desc {
+      font-size: 0.83rem;
+      color: var(--gray500);
+      line-height: 1.65;
+    }
+    .resp-desc strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* ── KPI SECTION ───────────────────────────────────────────── */
+    .kpi-section {
+      margin-bottom: 52px;
+    }
+    .kpi-main-card {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e2038 100%);
+      border-radius: var(--r);
+      padding: 36px 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-main-card::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(249,140,83,0.15) 0%, transparent 70%);
+    }
+    .kpi-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 18px;
+    }
+    .kpi-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      position: relative; z-index: 1;
+    }
+    .kpi-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .kpi-bullet {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .kpi-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      font-weight: 500;
+    }
+    .kpi-sublabel {
+      display: block;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 3px;
+      font-weight: 400;
+    }
+    .kpi-star {
+      background: linear-gradient(135deg, var(--coral), var(--orange));
+      border: none;
+    }
+    .kpi-star .kpi-label { color: var(--white); font-weight: 700; }
+    .kpi-star .kpi-bullet { background: var(--white); width: 10px; height: 10px; }
+
+    /* ── COMPETENCIES ──────────────────────────────────────────── */
+    .competencies-section {
+      margin-bottom: 52px;
+    }
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .comp-card {
+      background: var(--white);
+      border: 1.5px solid var(--gray200);
+      border-radius: var(--r);
+      padding: 20px 18px;
+      text-align: center;
+    }
+    .comp-emoji { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+    .comp-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 5px;
+    }
+    .comp-desc {
+      font-size: 0.74rem;
+      color: var(--gray500);
+      line-height: 1.55;
+    }
+
+    /* ── PLATFORMS ─────────────────────────────────────────────── */
+    .platforms-section {
+      margin-bottom: 52px;
+    }
+    .platforms-row {
+      display: flex;
+      gap: 14px;
+    }
+    .platform-card {
+      flex: 1;
+      background: var(--white);
+      border: 1.5px solid var(--gray200);
+      border-radius: var(--r);
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+    .platform-logo {
+      font-size: 1.6rem;
+    }
+    .platform-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .platform-role {
+      font-size: 0.74rem;
+      color: var(--gray500);
+      line-height: 1.5;
+    }
+    .platform-card.own {
+      border-color: var(--coral);
+      background: linear-gradient(135deg, rgba(235,71,81,0.04) 0%, #fff 100%);
+    }
+    .platform-card.own .platform-name { color: var(--coral); }
+    .own-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: rgba(235,71,81,0.12);
+      color: var(--coral);
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+
+    /* ── REPORTING LINE ────────────────────────────────────────── */
+    .reporting-box {
+      background: var(--gray100);
+      border-radius: var(--r);
+      border: 1.5px solid var(--gray200);
+      padding: 26px 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+    .reporting-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .reporting-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--lavender);
+      margin-bottom: 5px;
+    }
+    .reporting-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .reporting-context {
+      font-size: 0.8rem;
+      color: var(--gray500);
+      margin-top: 4px;
+    }
+    .reporting-divider {
+      width: 1px;
+      height: 48px;
+      background: var(--gray200);
+    }
+
+    /* ── FOOTER COLOR PALETTE ──────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      margin-top: 64px;
+      padding: 36px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .footer-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 16px;
+    }
+    .palette-strip {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .swatch-color {
+      width: 52px; height: 52px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .swatch-info {
+      text-align: center;
+    }
+    .swatch-hex {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.5px;
+    }
+    .swatch-name {
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 2px;
+    }
+    .footer-copy {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-copy-text {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.15);
+    }
+    .footer-logo span { color: rgba(249,140,83,0.4); }
+
+    /* ── UTILITIES ─────────────────────────────────────────────── */
+    .mb-section { margin-bottom: 52px; }
+    .section-divider {
+      height: 1px;
+      background: var(--gray200);
+      margin: 0 0 52px;
+    }
+
+    @media (max-width: 680px) {
+      .header-inner, .main, .mission-band-inner { padding-left: 22px; padding-right: 22px; }
+      .header-title { font-size: 1.8rem; }
+      .responsibilities-grid { grid-template-columns: 1fr; }
+      .resp-card.featured { grid-column: span 1; }
+      .kpi-list { grid-template-columns: 1fr; }
+      .comp-grid { grid-template-columns: 1fr 1fr; }
+      .platforms-row { flex-direction: column; }
+      .footer { padding-left: 22px; padding-right: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <div class="logo">
+      <span class="logo-amg">amg</span>
+      <span class="logo-dot">.</span>
+      <span class="logo-group">Hospitality Group</span>
+    </div>
+
+    <!-- Eyebrow badge -->
+    <div class="header-badge">Descripción de Puesto</div>
+
+    <!-- Title -->
+    <h1 class="header-title">Coordinación de Apps &amp; Performance</h1>
+
+    <!-- Subtitle -->
+    <p class="header-subtitle">
+      Responsable de extraer el máximo valor comercial de cada plataforma digital,
+      proteger los intereses de AMG en negociaciones y garantizar que las marcas del
+      grupo crezcan de manera rentable en el ecosistema delivery.
+    </p>
+
+    <!-- Meta chips -->
+    <div class="header-meta">
+      <div class="meta-chip">
+        <span class="dot" style="background:var(--orange)"></span>
+        Área de Marketing
+      </div>
+      <div class="meta-chip">
+        <span class="dot" style="background:var(--coral)"></span>
+        Tiempo completo
+      </div>
+      <div class="meta-chip">
+        <span class="dot" style="background:var(--lavender)"></span>
+        Uber Eats · Rappi · DiDi Food · Foodbot
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MISSION BAND
+═══════════════════════════════════════════════════════════════ -->
+<div class="mission-band">
+  <div class="mission-band-inner">
+    <div class="mission-icon">🎯</div>
+    <div>
+      <div class="mission-label">Misión del puesto</div>
+      <p class="mission-text">
+        Ser el punto de contacto <strong>estratégico</strong> entre AMG y las plataformas de delivery —
+        no solo operativo. Su misión es <strong>aumentar los ingresos digitales de AMG</strong> mediante
+        una gestión comercial activa de cada canal, asegurando posicionamiento, excelencia operativa
+        y crecimiento rentable en cada plataforma.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════════════════════════ -->
+<main class="main">
+
+  <!-- ── 1. RESPONSABILIDADES CLAVE ─────────────────────────── -->
+  <div class="section-header">
+    <div class="section-accent"></div>
+    <div>
+      <div class="section-number">01 · Responsabilidades</div>
+      <h2 class="section-title">Actividades clave del puesto</h2>
+    </div>
+  </div>
+
+  <div class="responsibilities-grid">
+
+    <!-- Card 1 — Gestión de relaciones -->
+    <div class="resp-card">
+      <div class="resp-icon-wrap ic-coral">🤝</div>
+      <span class="resp-tag tag-coral">Relaciones Comerciales</span>
+      <div class="resp-title">Gestión de relaciones con plataformas</div>
+      <p class="resp-desc">
+        Ser el <strong>interlocutor principal</strong> de AMG ante Uber Eats, Rappi y DiDi Food.
+        Asistir a reuniones de negocio, coordinar con Account Managers y representar los intereses
+        del grupo en negociaciones de visibilidad y condiciones comerciales.
+      </p>
+    </div>
+
+    <!-- Card 2 — Evaluación de promociones -->
+    <div class="resp-card">
+      <div class="resp-icon-wrap ic-orange">📊</div>
+      <span class="resp-tag tag-orange">Criterio Comercial</span>
+      <div class="resp-title">Evaluación y gestión de promociones</div>
+      <p class="resp-desc">
+        Analizar, filtrar y escalar internamente todas las propuestas de <strong>campañas y activaciones</strong>
+        de las plataformas. Evaluar rentabilidad antes de aprobar o rechazar —
+        con criterio comercial, no solo operativo.
+      </p>
+    </div>
+
+    <!-- Card 3 — Mantenimiento calidad -->
+    <div class="resp-card">
+      <div class="resp-icon-wrap ic-lav">🖼️</div>
+      <span class="resp-tag tag-lav">Calidad de Marca</span>
+      <div class="resp-title">Mantenimiento y calidad de plataformas</div>
+      <p class="resp-desc">
+        Asegurar que <strong>menús, fotografías, precios y descripciones</strong> de todas las marcas AMG
+        estén actualizados, correctos y alineados con los estándares visuales de cada marca en las
+        tres plataformas externas y en Foodbot.
+      </p>
+    </div>
+
+    <!-- Card 4 — Análisis y reportes -->
+    <div class="resp-card">
+      <div class="resp-icon-wrap ic-navy">📈</div>
+      <span class="resp-tag tag-navy">Analytics</span>
+      <div class="resp-title">Análisis de desempeño y reportes</div>
+      <p class="resp-desc">
+        Recibir, consolidar y analizar los <strong>Monthly Business Reviews</strong> de cada marca en cada
+        plataforma. Presentar internamente métricas clave con conclusiones y acciones propuestas —
+        no solo datos crudos.
+      </p>
+    </div>
+
+    <!-- Card 5 — Foodbot (featured) -->
+    <div class="resp-card featured">
+      <div class="resp-icon-wrap ic-coral">🏠</div>
+      <span class="resp-tag tag-coral">Canal Propio · Estratégico</span>
+      <div class="resp-title">Gestión del canal propio — Foodbot</div>
+      <p class="resp-desc">
+        Administrar activamente la plataforma de pedidos propios de AMG: <strong>optimización de catálogos,
+        campañas internas, análisis de comportamiento de usuarios</strong> y coordinación con el equipo de
+        tecnología para mejoras operativas. El canal propio es estratégico y debe crecer como
+        alternativa rentable a las apps externas.
+      </p>
+    </div>
+
+    <!-- Card 6 — KPIs y crecimiento -->
+    <div class="resp-card">
+      <div class="resp-icon-wrap ic-orange">🔍</div>
+      <span class="resp-tag tag-orange">Seguimiento</span>
+      <div class="resp-title">Seguimiento de KPIs y oportunidades</div>
+      <p class="resp-desc">
+        Definir y monitorear indicadores clave por canal y marca. Identificar <strong>brechas y proponer
+        acciones específicas</strong> para cerrarlas con impacto directo en ventas.
+      </p>
+    </div>
+
+    <!-- Card 7 — Coordinación interna -->
+    <div class="resp-card">
+      <div class="resp-icon-wrap ic-lav">🔗</div>
+      <span class="resp-tag tag-lav">Coordinación</span>
+      <div class="resp-title">Coordinación interna con marcas y operaciones</div>
+      <p class="resp-desc">
+        Actuar como <strong>puente</strong> entre plataformas digitales y los equipos de cocina, marca y
+        marketing. Comunicar cambios operativos, lanzamientos y activaciones con suficiente
+        anticipación para garantizar ejecución sin fricciones.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- ── 2. PLATAFORMAS ──────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-accent"></div>
+    <div>
+      <div class="section-number">02 · Ecosistema</div>
+      <h2 class="section-title">Plataformas bajo gestión</h2>
+    </div>
+  </div>
+
+  <div class="platforms-section">
+    <div class="platforms-row">
+      <div class="platform-card">
+        <div class="platform-logo">🟢</div>
+        <div class="platform-name">Uber Eats</div>
+        <p class="platform-role">Gestión comercial, campañas y optimización de visibilidad en la plataforma líder del mercado.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo">🟠</div>
+        <div class="platform-name">Rappi</div>
+        <p class="platform-role">Negociación de comisiones, activaciones especiales y presencia en Rappi Prime y Turbo.</p>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo">🟡</div>
+        <div class="platform-name">DiDi Food</div>
+        <p class="platform-role">Relación comercial y seguimiento de performance en el segmento de menor comisión.</p>
+      </div>
+      <div class="platform-card own">
+        <div class="platform-logo">⭐</div>
+        <div class="platform-name">Foodbot</div>
+        <span class="own-badge">Canal propio</span>
+        <p class="platform-role">Administración total del canal propio. Crecimiento estratégico como alternativa a terceros.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. KPIs ─────────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-accent"></div>
+    <div>
+      <div class="section-number">03 · Métricas</div>
+      <h2 class="section-title">Resultados esperados y KPIs</h2>
+    </div>
+  </div>
+
+  <div class="kpi-section">
+    <div class="kpi-main-card">
+      <div class="kpi-eyebrow">Indicadores clave de desempeño</div>
+      <ul class="kpi-list">
+        <li class="kpi-item kpi-star">
+          <span class="kpi-bullet"></span>
+          <span class="kpi-label">
+            % Crecimiento de ventas MoM por plataforma
+            <span class="kpi-sublabel">KPI principal del puesto</span>
+          </span>
+        </li>
+        <li class="kpi-item">
+          <span class="kpi-bullet"></span>
+          <span class="kpi-label">
+            Ticket promedio por canal y marca
+            <span class="kpi-sublabel">Benchmark vs. período anterior</span>
+          </span>
+        </li>
+        <li class="kpi-item">
+          <span class="kpi-bullet"></span>
+          <span class="kpi-label">
+            Rating promedio por marca y plataforma
+            <span class="kpi-sublabel">Meta: mantener ≥4.5 estrellas</span>
+          </span>
+        </li>
+        <li class="kpi-item">
+          <span class="kpi-bullet"></span>
+          <span class="kpi-label">
+            Tasa de reorden (retención de usuarios)
+            <span class="kpi-sublabel">Especialmente relevante en Foodbot</span>
+          </span>
+        </li>
+        <li class="kpi-item">
+          <span class="kpi-bullet"></span>
+          <span class="kpi-label">
+            Participación de ventas digitales vs. total
+            <span class="kpi-sublabel">Mix de canal por marca</span>
+          </span>
+        </li>
+        <li class="kpi-item">
+          <span class="kpi-bullet"></span>
+          <span class="kpi-label">
+            Rentabilidad por campaña/promoción aprobada
+            <span class="kpi-sublabel">ROI de activaciones gestionadas</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── 4. COMPETENCIAS ─────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-accent"></div>
+    <div>
+      <div class="section-number">04 · Perfil</div>
+      <h2 class="section-title">Competencias requeridas</h2>
+    </div>
+  </div>
+
+  <div class="competencies-section">
+    <div class="comp-grid">
+      <div class="comp-card">
+        <span class="comp-emoji">🧠</span>
+        <div class="comp-name">Criterio comercial</div>
+        <p class="comp-desc">Capacidad de evaluar rentabilidad y tomar decisiones con impacto en ingresos, no solo en operación.</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-emoji">📐</span>
+        <div class="comp-name">Pensamiento analítico</div>
+        <p class="comp-desc">Leer datos de plataformas, identificar patrones y traducirlos en acciones concretas.</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-emoji">🤝</span>
+        <div class="comp-name">Gestión de stakeholders</div>
+        <p class="comp-desc">Negociar con Account Managers externos y coordinar con equipos internos de forma fluida.</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-emoji">📋</span>
+        <div class="comp-name">Atención al detalle</div>
+        <p class="comp-desc">Mantener calidad y consistencia visual y de información en todas las plataformas sin errores.</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-emoji">⚡</span>
+        <div class="comp-name">Ejecución y seguimiento</div>
+        <p class="comp-desc">Dar seguimiento sistemático a tareas, compromisos y KPIs sin necesidad de supervisión constante.</p>
+      </div>
+      <div class="comp-card">
+        <span class="comp-emoji">🗺️</span>
+        <div class="comp-name">Visión de crecimiento</div>
+        <p class="comp-desc">Entender el ecosistema delivery como un canal en expansión, con visión de largo plazo para AMG.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. REPORTE ──────────────────────────────────────────── -->
+  <div class="section-header">
+    <div class="section-accent"></div>
+    <div>
+      <div class="section-number">05 · Estructura</div>
+      <h2 class="section-title">Línea de reporte e interacciones clave</h2>
+    </div>
+  </div>
+
+  <div class="reporting-box">
+    <div class="reporting-icon">👤</div>
+    <div>
+      <div class="reporting-label">Reporta a</div>
+      <div class="reporting-value">Gestión de Marketing</div>
+      <div class="reporting-context">Integrado al área de Marketing como función especializada en canales digitales</div>
+    </div>
+    <div class="reporting-divider"></div>
+    <div class="reporting-icon">🔗</div>
+    <div>
+      <div class="reporting-label">Interacciones internas</div>
+      <div class="reporting-value">Operaciones · Cocina · Tecnología · Marca</div>
+      <div class="reporting-context">Actúa como puente entre el ecosistema digital y el negocio físico</div>
+    </div>
+    <div class="reporting-divider"></div>
+    <div class="reporting-icon">🌐</div>
+    <div>
+      <div class="reporting-label">Interacciones externas</div>
+      <div class="reporting-value">Uber Eats · Rappi · DiDi Food</div>
+      <div class="reporting-context">Único punto de contacto oficial de AMG ante plataformas</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER — COLOR PALETTE
+═══════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-label">Paleta de marca · AMG Brandbook</div>
+    <div class="palette-strip">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#EB4751"></div>
+        <div class="swatch-info">
+          <div class="swatch-hex">#EB4751</div>
+          <div class="swatch-name">Coral Red</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F98C53"></div>
+        <div class="swatch-info">
+          <div class="swatch-hex">#F98C53</div>
+          <div class="swatch-name">Orange</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#A3A7C6"></div>
+        <div class="swatch-info">
+          <div class="swatch-hex">#A3A7C6</div>
+          <div class="swatch-name">Lavender</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#26283F"></div>
+        <div class="swatch-info">
+          <div class="swatch-hex">#26283F</div>
+          <div class="swatch-name">Navy</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FAF9F7; border: 1px solid rgba(255,255,255,0.2);"></div>
+        <div class="swatch-info">
+          <div class="swatch-hex">#FAF9F7</div>
+          <div class="swatch-name">Cream</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <span class="footer-copy-text">AMG Hospitality Group · Coordinación de Apps &amp; Performance · 2026</span>
+      <span class="footer-logo">amg<span>.</span></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
